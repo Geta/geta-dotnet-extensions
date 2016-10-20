@@ -46,20 +46,31 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void If_allows_to_use_predicates_for_conditions()
+        public void If_does_not_invoke_nested_condition_predicate_when_parent_condition_is_false()
         {
-            string value1 = null;
-            var value2 = string.Empty;
-            var value3 = "Hello";
+            var value = "Hello";
 
             var list = new List<string>()
-                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                // ReSharper disable once ExpressionIsAlwaysNull
-                .If(() => !string.IsNullOrEmpty(value1), l => l.FluentAdd(value1))
-                .If(() => !string.IsNullOrEmpty(value2), l => l.FluentAdd(value2))
-                .If(() => !string.IsNullOrEmpty(value3), l => l.FluentAdd(value3));
+                .If(false, l => 
+                    l.If(() => !string.IsNullOrEmpty(value),
+                        l1 => l1.FluentAdd(value)));
 
-            var expected = "Hello";
+            var expected = string.Empty;
+            var actual = string.Concat(list);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void If_invokes_nested_condition_predicate_when_parent_condition_is_true()
+        {
+            var value = "Hello";
+
+            var list = new List<string>()
+                .If(true, l =>
+                    l.If(() => !string.IsNullOrEmpty(value),
+                        l1 => l1.FluentAdd(value)));
+
+            var expected = value;
             var actual = string.Concat(list);
             Assert.Equal(expected, actual);
         }
