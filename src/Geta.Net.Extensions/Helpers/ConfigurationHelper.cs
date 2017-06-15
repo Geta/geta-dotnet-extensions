@@ -27,6 +27,9 @@ namespace Geta.Net.Extensions.Helpers
 
             if (!string.IsNullOrEmpty(configValueString))
             {
+                if (typeof(T).IsEnum)
+                    return (T)Enum.Parse(typeof(T), configValueString);
+
                 return (T)Convert.ChangeType(configValueString, typeof(T));
             }
 
