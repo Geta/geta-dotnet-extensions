@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -94,5 +95,45 @@ namespace Geta.Net.Extensions
             long outValue;
             return long.TryParse(input, out outValue) ? (long?)outValue : null;
         }
+
+        /// <summary>
+        /// Answers true if this String is either null or empty.
+        /// </summary>
+        /// <param name="input">The string to check.</param>
+        public static bool IsNullOrEmpty(this string input) => string.IsNullOrEmpty(input);
+
+        /// <summary>
+        /// Answers true if this String is neither null or empty.
+        /// </summary>
+        /// <param name="input">The string to check.</param>
+        public static bool HasValue(this string input) => !IsNullOrEmpty(input);
+
+        /// <summary>
+        /// Encodes the string as HTML.
+        /// </summary>
+        /// <param name="input">The dangerous string to encode.</param>
+        /// <returns>The safely encoded HTML string.</returns>
+        public static string HtmlEncode(this string input) => input.HasValue() ? WebUtility.HtmlEncode(input) : input;
+
+        /// <summary>
+        /// Decodes an HTML string.
+        /// </summary>
+        /// <param name="input">The HTML string to decode.</param>
+        /// <returns>The decoded HTML string.</returns>
+        public static string HtmlDencode(this string input) => input.HasValue() ? WebUtility.HtmlDecode(input) : input;
+
+        /// <summary>
+        /// Encodes the string for URLs.
+        /// </summary>
+        /// <param name="input">The dangerous string to URL encode.</param>
+        /// <returns>The safely encoded URL string.</returns>
+        public static string UrlEncode(this string input) => input.HasValue() ? WebUtility.UrlEncode(input) : input;
+
+        /// <summary>
+        /// Decodes a URL-encoded string.
+        /// </summary>
+        /// <param name="input">The URL-encoded string to decode.</param>
+        /// <returns>The decoded string.</returns>
+        public static string UrlDencode(this string input) => input.HasValue() ? WebUtility.UrlDecode(input) : input;
     }
 }
