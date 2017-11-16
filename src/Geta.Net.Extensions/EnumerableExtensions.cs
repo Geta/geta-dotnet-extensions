@@ -5,8 +5,17 @@ using System.Linq;
 
 namespace Geta.Net.Extensions
 {
+    /// <summary>
+    ///     Enumerable extensions.
+    /// </summary>
     public static class EnumerableExtensions
     {
+        /// <summary>
+        /// Applies an action on each item of the sequence.
+        /// </summary>
+        /// <typeparam name="T">The type of an item.</typeparam>
+        /// <param name="items">The source sequence of items.</param>
+        /// <param name="action">The action to apply on an item.</param>
         public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
             if (items == null)
