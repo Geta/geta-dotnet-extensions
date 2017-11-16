@@ -5,8 +5,17 @@ using System.Linq;
 
 namespace Geta.Net.Extensions
 {
+    /// <summary>
+    ///     Enumerable extensions.
+    /// </summary>
     public static class EnumerableExtensions
     {
+        /// <summary>
+        /// Applies an action on each item of the sequence.
+        /// </summary>
+        /// <typeparam name="T">The type of an item.</typeparam>
+        /// <param name="items">The source sequence of items.</param>
+        /// <param name="action">The action to apply on an item.</param>
         public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
             if (items == null)
@@ -62,6 +71,21 @@ namespace Geta.Net.Extensions
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> source)
         {
             return source == null || !source.Any();
+        }
+
+        /// <summary>
+        /// Filters by page and page size.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="page">Page number.</param>
+        /// <param name="pageSize">Page size.</param>
+        /// <typeparam name="T">The type of the source.</typeparam>
+        /// <returns>Filtered sequence.</returns>
+        public static IEnumerable<T> FilterPaging<T>(this IEnumerable<T> source, int page, int pageSize)
+        {
+            var take = pageSize;
+            var skip = pageSize * (page - 1);
+            return source.Skip(skip).Take(take);
         }
     }
 }
