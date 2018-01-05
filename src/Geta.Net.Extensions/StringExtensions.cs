@@ -58,7 +58,7 @@ namespace Geta.Net.Extensions
             str = str.ToLowerInvariant();
             // invalid chars, make into spaces
             str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
-            // convert multiple spaces/hyphens into one space       
+            // convert multiple spaces/hyphens into one space
             str = Regex.Replace(str, @"[\s-]+", " ").Trim();
             // replace spaces with hyphens
             str = Regex.Replace(str, @"\s", "-");
@@ -135,5 +135,25 @@ namespace Geta.Net.Extensions
         /// <param name="input">The URL-encoded string to decode.</param>
         /// <returns>The decoded string.</returns>
         public static string UrlDencode(this string input) => input.HasValue() ? WebUtility.UrlDecode(input) : input;
+
+        /// <summary>
+        /// Checks if a string is absolute URL.
+        /// </summary>
+        /// <param name="url">The string to check.</param>
+        /// <returns>Returns true, if it is absolute URL and false when not.</returns>
+        public static bool IsAbsoluteUrl(this string url)
+        {
+            return Uri.TryCreate(url, UriKind.Absolute, out var _);
+        }
+
+        /// <summary>
+        /// Checks if a string is relative URL.
+        /// </summary>
+        /// <param name="url">The string to check.</param>
+        /// <returns>Returns true, if it is relative URL and false when not.</returns>
+        public static bool IsRelativeUrl(this string url)
+        {
+            return Uri.TryCreate(url, UriKind.Relative, out var _);
+        }
     }
 }
