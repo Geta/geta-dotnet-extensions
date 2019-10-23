@@ -48,6 +48,7 @@ Features included in package:
   - `GenerateSlug`, `GenerateSlugWithoutHyphens` - Creates URL / Html friendly slug;
   - `TryParseInt32` - Parses string to nullable int (Int32);
   - `TryParseInt64` - Parses string to nullable long (Int64);
+  - `TryParseDecimal` - Parses string to nullable decimal;
   - `IsNullOrEmpty` - Answers true if this String is either null or empty;
   - `HasValue` - Answers true if this String is neither null or empty;
   - `HtmlEncode` - Encodes the string as HTML;
