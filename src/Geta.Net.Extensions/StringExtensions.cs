@@ -90,8 +90,7 @@ namespace Geta.Net.Extensions
         /// <returns>int (Int32) value if parse succeeds otherwise null.</returns>
         public static int? TryParseInt32(this string input)
         {
-            int outValue;
-            return Int32.TryParse(input, out outValue) ? (int?)outValue : null;
+            return Int32.TryParse(input, out var outValue) ? (int?)outValue : null;
         }
 
         /// <summary>
@@ -101,8 +100,17 @@ namespace Geta.Net.Extensions
         /// <returns>long (Int64) value if parse succeeds otherwise null.</returns>
         public static long? TryParseInt64(this string input)
         {
-            long outValue;
-            return long.TryParse(input, out outValue) ? (long?)outValue : null;
+            return long.TryParse(input, out var outValue) ? (long?)outValue : null;
+        }
+
+        /// <summary>
+        ///     Parses string to nullable decimal.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>decimal value if parse succeeds otherwise null.</returns>
+        public static decimal? TryParseDecimal(this string input)
+        {
+            return decimal.TryParse(input, out var outValue) ? (decimal?)outValue : null;
         }
 
         /// <summary>
