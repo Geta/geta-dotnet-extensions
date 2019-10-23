@@ -10,5 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <tags>Geta Foundation .NET Extensions library</tags>
+    <dependencies>
+      <dependency id="NETStandard.Library" version="2.*" />
+      <dependency id="System.Configuration.ConfigurationManager" version="4.*" />
+    </dependencies>
   </metadata>
 </package>

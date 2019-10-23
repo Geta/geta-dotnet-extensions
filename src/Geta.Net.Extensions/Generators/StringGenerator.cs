@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Geta Digital. All rights reserved.
+// Licensed under Apache-2.0. See the LICENSE file in the project root for more information
+using System;
 
 namespace Geta.Net.Extensions.Generators
 {
@@ -10,7 +12,14 @@ namespace Geta.Net.Extensions.Generators
         {
             return GenerateRandomString(uppercaseChars, lowerCaseChars, digits, symbols);
         }
-
+        /// <summary>
+        /// Generates a random string
+        /// </summary>
+        /// <param name="uppercaseChars">How many upper case characters string should contain</param>
+        /// <param name="lowerCaseChars">How many lower case characters string should contain</param>
+        /// <param name="digits">How many digit characters string should contain</param>
+        /// <param name="symbols">How many symbol characters string should contain</param>
+        /// <returns>string</returns>
         public static string GenerateRandomString(int uppercaseChars, int lowerCaseChars, int digits, int symbols)
         {
             const string allowedLowercaseChars = "abcdefghijkmnopqrstuvwxyz";

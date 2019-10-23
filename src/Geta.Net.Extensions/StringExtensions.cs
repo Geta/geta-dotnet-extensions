@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Geta Digital. All rights reserved.
+// Licensed under Apache-2.0. See the LICENSE file in the project root for more information
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,6 +14,13 @@ namespace Geta.Net.Extensions
     /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// Transforms list into a separated string.
+        /// </summary>
+        /// <param name="strings">The source</param>
+        /// <param name="separator">String separator</param>
+        /// <param name="skipNullOrWhitespace">If list items that are null or empty strings should be skipped</param>
+        /// <returns></returns>
         public static string JoinStrings(this IEnumerable<string> strings, string separator = ", ", bool skipNullOrWhitespace = true)
         {
             var stringsToJoin = strings
@@ -23,9 +32,9 @@ namespace Geta.Net.Extensions
         /// <summary>
         ///     Creates URL / Html friendly slug
         /// </summary>
-        /// <param name="phrase"></param>
-        /// <param name="maxLength"></param>
-        /// <param name="wordSeparator"></param>
+        /// <param name="phrase">Source string.</param>
+        /// <param name="maxLength">Max length</param>
+        /// <param name="wordSeparator">Word separator</param>
         /// <returns></returns>
         public static string GenerateSlug(this string phrase, int maxLength = 50, string wordSeparator = "-")
         {
@@ -81,8 +90,7 @@ namespace Geta.Net.Extensions
         /// <returns>int (Int32) value if parse succeeds otherwise null.</returns>
         public static int? TryParseInt32(this string input)
         {
-            int outValue;
-            return Int32.TryParse(input, out outValue) ? (int?)outValue : null;
+            return Int32.TryParse(input, out var outValue) ? (int?)outValue : null;
         }
 
         /// <summary>
@@ -92,8 +100,17 @@ namespace Geta.Net.Extensions
         /// <returns>long (Int64) value if parse succeeds otherwise null.</returns>
         public static long? TryParseInt64(this string input)
         {
-            long outValue;
-            return long.TryParse(input, out outValue) ? (long?)outValue : null;
+            return long.TryParse(input, out var outValue) ? (long?)outValue : null;
+        }
+
+        /// <summary>
+        ///     Parses string to nullable decimal.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>decimal value if parse succeeds otherwise null.</returns>
+        public static decimal? TryParseDecimal(this string input)
+        {
+            return decimal.TryParse(input, out var outValue) ? (decimal?)outValue : null;
         }
 
         /// <summary>
@@ -134,7 +151,7 @@ namespace Geta.Net.Extensions
         /// </summary>
         /// <param name="input">The URL-encoded string to decode.</param>
         /// <returns>The decoded string.</returns>
-        public static string UrlDencode(this string input) => input.HasValue() ? WebUtility.UrlDecode(input) : input;
+        public static string UrlDecode(this string input) => input.HasValue() ? WebUtility.UrlDecode(input) : input;
 
         /// <summary>
         /// Checks if a string is absolute URL.

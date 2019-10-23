@@ -1,6 +1,9 @@
-﻿using System;
+﻿// Copyright (c) Geta Digital. All rights reserved.
+// Licensed under Apache-2.0. See the LICENSE file in the project root for more information
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Geta.Net.Extensions
@@ -86,6 +89,60 @@ namespace Geta.Net.Extensions
             var take = pageSize;
             var skip = pageSize * (page - 1);
             return source.Skip(skip).Take(take);
+        }
+        /// <summary>
+        /// Transforms item into IEnumerable with one item.
+        /// </summary>
+        /// <typeparam name="T">The type of elements of the sequence.</typeparam>
+        /// <param name="item">Only member of enumerable.</param>
+        /// <returns>Enumerable with one item</returns>
+        public static IEnumerable<T> Singleton<T>(T item)
+        {
+            yield return item;
+        }
+        /// <summary>
+        /// Splits IEnumerable into multiple partitions.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">The source.</param>
+        /// <param name="size">Partition size.</param>
+        /// <returns>Partitioned enumerable.</returns>
+        public static IEnumerable<IEnumerable<T>> Partition<T>(this IEnumerable<T> source, int size)
+        {
+            List<T> partition = null;
+
+            foreach (var item in source)
+            {
+                if (partition == null)
+                {
+                    partition = new List<T>(size);
+                }
+
+                partition.Add(item);
+
+                if (partition.Count == size)
+                {
+                    yield return new ReadOnlyCollection<T>(partition);
+                    partition = null;
+                }
+            }
+
+            if (partition != null && partition.Any())
+            {
+                yield return new ReadOnlyCollection<T>(partition);
+            }
+        }
+        /// <summary>
+        /// Selects distinct values from list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TKey">Property</typeparam>
+        /// <param name="items">The source</param>
+        /// <param name="property">Property to distinct by</param>
+        /// <returns></returns>
+        public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
+        {
+            return items.GroupBy(property).Select(x => x.First());
         }
     }
 }
