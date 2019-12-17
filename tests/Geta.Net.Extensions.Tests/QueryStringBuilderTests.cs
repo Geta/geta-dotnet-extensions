@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Geta.Net.Extensions.Generators;
+﻿using Geta.Net.Extensions.Generators;
 using Xunit;
 
 namespace Geta.Net.Extensions.Tests
@@ -9,7 +6,7 @@ namespace Geta.Net.Extensions.Tests
     public class QueryStringBuilderTests
     {
         [Fact]
-        public void AddStringParameterToAbsoluteUrl()
+        public void Add_string_param_to_absolute_url()
         {
             var builder = new QueryStringBuilder("http://domain.com");
             builder.Add("p1", "v1");
@@ -17,7 +14,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void AddSecondaryStringParameterToAbsoluteUrl()
+        public void Add_secondary_string_param_to_absolute_url()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Add("p2", "v2");
@@ -25,7 +22,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void AddStringParameterToAbsoluteUrlWithPath()
+        public void Add_string_param_to_absolute_url_with_path()
         {
             var builder = new QueryStringBuilder("http://domain.com/some/path");
             builder.Add("p1", "v1");
@@ -33,7 +30,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void AddObjectParameterToAbsoluteUrl()
+        public void Add_object_param_to_absolute_url()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Add("p2", 10);
@@ -41,7 +38,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void AddHandleEmptyString()
+        public void Add_handle_empty_string()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Add("p2", "");
@@ -49,7 +46,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void AddHandleNullObject()
+        public void Add_handle_null_object()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Add("p2", null);
@@ -57,7 +54,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void RemoveParameter()
+        public void Remove_parameter()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Remove("p1");
@@ -65,7 +62,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void RemoveHandleNonExistingParameter()
+        public void Remove_and_handle_non_existing_param()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Remove("p2");
@@ -73,7 +70,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void RemoveHandleNull()
+        public void Remove_handle_null()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Remove(null);
@@ -81,7 +78,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void ToggleParameterRemove()
+        public void Toggle_param_should_remove()
         {
             var builder = new QueryStringBuilder("http://domain.com/?p1=v1");
             builder.Toggle("p1", "v2");
@@ -89,7 +86,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void ToggleParameterAdd()
+        public void Toggle_param_should_add()
         {
             var builder = new QueryStringBuilder("http://domain.com/");
             builder.Toggle("p1", "v2");
@@ -97,7 +94,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void ToggleHandleNull()
+        public void Toggle_param_should_handle_null()
         {
             var builder = new QueryStringBuilder("http://domain.com/");
             builder.Toggle("p1", null);
@@ -105,7 +102,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void AddParameterToRelative()
+        public void Add_param_to_relative_url()
         {
             var builder = new QueryStringBuilder("/?p1=v1");
             builder.Add("p2", "v2");
@@ -113,7 +110,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void AddMultipleParametersToRelative()
+        public void Add_multiple_params_to_relative_url()
         {
             var builder = new QueryStringBuilder("/");
             builder.Add("p1", "v1");
@@ -123,7 +120,7 @@ namespace Geta.Net.Extensions.Tests
         }
 
         [Fact]
-        public void RemoveParameterFromRelative()
+        public void Remove_param_from_relative_url()
         {
             var builder = new QueryStringBuilder("/?p1=v1");
             builder.Remove("p1");
