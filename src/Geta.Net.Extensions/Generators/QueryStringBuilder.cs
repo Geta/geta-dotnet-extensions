@@ -26,9 +26,7 @@ namespace Geta.Net.Extensions.Generators
                 }
                 else
                 {
-                    var baseUri = new Uri("http://dummy.com");
-                    var dummyUri = new Uri(baseUri, uri);
-                    _uriBuilder = new UriBuilder(dummyUri);
+                    _uriBuilder = new UriBuilder(CreateDummyDomain(uri));
                     _isRelative = true;
                 }
             }
@@ -40,7 +38,20 @@ namespace Geta.Net.Extensions.Generators
         /// <param name="uri">Uri for which to build QueryStringBuilder.</param>
         public QueryStringBuilder(Uri uri)
         {
-            _uriBuilder = new UriBuilder(uri);
+            if (uri == null)
+            {
+                throw new ArgumentNullException(nameof(uri));
+            }
+
+            if (uri.IsAbsoluteUri)
+            {
+                _uriBuilder = new UriBuilder(uri);
+            }
+            else
+            {
+                _uriBuilder = new UriBuilder(CreateDummyDomain(uri));
+                _isRelative = true;
+            }
         }
 
         /// <summary>
@@ -147,6 +158,13 @@ namespace Geta.Net.Extensions.Generators
         public override string ToString()
         {
             return !_isRelative ? _uriBuilder.Uri.AbsoluteUri : _uriBuilder.Uri.PathAndQuery;
+        }
+
+        private Uri CreateDummyDomain(Uri uri)
+        {
+            var baseUri = new Uri("http://dummy.com");
+            var dummyUri = new Uri(baseUri, uri);
+            return dummyUri;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Geta.Net.Extensions.Generators;
+﻿using System;
+using Geta.Net.Extensions.Generators;
 using Xunit;
 
 namespace Geta.Net.Extensions.Tests
@@ -125,6 +126,22 @@ namespace Geta.Net.Extensions.Tests
             var builder = new QueryStringBuilder("/?p1=v1");
             builder.Remove("p1");
             Assert.Equal("/", builder.ToString());
+        }
+
+        [Fact]
+        public void Initialize_absolute_with_uri()
+        {
+            var uri = new Uri("http://domain.com?p1=v1");
+            var builder = new QueryStringBuilder(uri);
+            Assert.Equal(uri.AbsoluteUri, builder.ToString());
+        }
+
+        [Fact]
+        public void Initialize_relative_with_uri()
+        {
+            var uri = new Uri("?p1=v1", UriKind.Relative);
+            var builder = new QueryStringBuilder(uri);
+            Assert.Equal("/?p1=v1", builder.ToString());
         }
     }
 }
