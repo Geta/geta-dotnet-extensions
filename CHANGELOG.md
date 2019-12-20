@@ -7,8 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - .NET Standard 2.0 support;
 - `DateTime` extension methods: `EndOfDay`, `BeginningOfDay`, `IsToday`, `IsTomorrow`, `IsYesterday`, `ToTimestamp`;
-- `Enumerable` extension methods: `Singleton`, `Partition`, `DistinctBy`;
-- `String` extension methods: `TryParseDecimal`. 
+- `Enumerable` extension methods: `Singleton`, `Partition`, `DistinctBy`.
 
 ## [1.0.0]
 
