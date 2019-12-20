@@ -8,7 +8,7 @@
     <projectUrl>https://github.com/Geta/Net.Extensions</projectUrl>
     <iconUrl>http://cdn.geta.no/opensource/icons/geta-epi-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>.NET extensions and helpers library</description>
+    <description>$description$</description>
     <tags>Geta Foundation .NET Extensions library</tags>
     <dependencies>
       <dependency id="NETStandard.Library" version="2.*" />
