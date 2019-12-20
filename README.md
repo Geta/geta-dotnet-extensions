@@ -1,3 +1,4 @@
+
 # .NET extensions and helpers library
 
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_NetExtensions_BuildNuGetPackage)/statusIcon)
@@ -24,6 +25,32 @@ Features included in package:
   - `Exists(string cultureName)` - Checks if there is a culture by the provided name.
 - `GenerateRandomString`
   - `GenerateRandomString(int uppercaseChars, int lowerCaseChars, int digits, int symbols)` - Generates a random string.
+- `QueryStringBuilder` - helps to build parametrized URI. Works both with absolute and relative URIs
+  - `Add(string name, string value)` - adds string parameter to URL
+  - `Add(string name, object value)` - adds object parameter to URL
+  - `Remove(string name)` - removes parameter from URL by name
+  - `Toggle(string name, string value)` - adds string parameter to query if it is not already present, otherwise it removes it.
+  - `Toggle(string name, object value)` - adds object type parameter to query if it is not already present, otherwise it removes it.
+  - `ToString()` - generates URL string. If URL is relative then only list of parameters are returned.
+
+`QueryStringBuilder` examples:
+
+```csharp
+// Initialize builder with absolute url and parameters
+var builder = new QueryStringBuilder("http://domain.com/?param=value");
+// Add second parameter
+builder.Add("param2", "object");
+// Should return http://domain.com/?param=value&param2=object
+var url = builder.ToString();
+```
+```csharp
+// Initialize builder with relative url and parameters
+var builder = new QueryStringBuilder("/?p1=o1");
+// Add second parameter
+builder.Add("p2", "o2");
+// Should return /?p1=o1&p2=o2
+var url = builder.ToString();
+```
 
 ### Extensions
 - `DateTimeExtensions`:
