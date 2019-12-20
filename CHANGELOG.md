@@ -1,6 +1,12 @@
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [2.0.1]
+
+### Added
+- `QueryStringBuilder` helper class to build absolute and relative urls with parameters
 
 ## [2.0.0]
 
