@@ -3,7 +3,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.2]
+## [2.1.2]
 
 - Fixed `System.Configuration.ConfigurationManager` version in nuspec.
 
