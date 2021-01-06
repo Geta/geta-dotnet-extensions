@@ -3,6 +3,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.3]
+
+- `Enumerable<T>` extension methods: `ForEach`, `Concat`;
+- `String` extension methods: `GetHead`, `GetTail`, `TryParseBool`, `TryParseTimeSpan`, `Capitalize`;
+
 ## [2.1.2]
 
 - Fixed `System.Configuration.ConfigurationManager` version in nuspec.
