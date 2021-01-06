@@ -69,12 +69,15 @@ var url = builder.ToString();
   - `FilterPaging` - Filters by page and page size;
   - `Singleton` - Transforms item into IEnumerable with one item;
   - `Partition` - Splits IEnumerable into multiple partitions;
-  - `DistinctBy` - Selects distinct values from list.
+  - `DistinctBy` - Selects distinct values from list;
+  - `Concat` - Can concatenate 2 or more sequences into signle.
 - `StringExtensions`:
   - `JoinStrings` - Transforms list into a separated string;
   - `GenerateSlug`, `GenerateSlugWithoutHyphens` - Creates URL / Html friendly slug;
   - `TryParseInt32` - Parses string to nullable int (Int32);
   - `TryParseInt64` - Parses string to nullable long (Int64);
+  - `TryParseBool` - Parses string to nullable boolean;
+  - `TryParseTimeSpan` - Parses string to nullable TimeSpan;
   - `TryParseDecimal` - Parses string to nullable decimal;
   - `IsNullOrEmpty` - Answers true if this String is either null or empty;
   - `HasValue` - Answers true if this String is neither null or empty;
@@ -83,7 +86,10 @@ var url = builder.ToString();
   - `UrlEncode` - Encodes the string for URLs;
   - `UrlDecode` - Decodes a URL-encoded string;
   - `IsAbsoluteUrl` - Checks if a string is absolute URL;
-  - `IsRelativeUrl` - Checks if a string is relative URL.
+  - `IsRelativeUrl` - Checks if a string is relative URL;
+  - `GetHead` - Returns beginning of the string and adds ellipse `...` if string is longer that specified by length;
+  - `GetTail` - Returns ending of the string and adds ellipse `...` if string is longer that specified by length;
+  - `Capitalize` - Capitalizes every word (title case).
 - `FluentExtensions` - Provides fluent way of chaining methods
     - `T If<T>(this T source, bool condition, Func<T, T> func)`
     - `T If<T>(this T source, Func<bool> condition, Func<T, T> func)`
