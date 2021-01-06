@@ -1,11 +1,13 @@
 ﻿// Copyright (c) Geta Digital. All rights reserved.
 // Licensed under Apache-2.0. See the LICENSE file in the project root for more information
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Geta.Net.Extensions
 {
@@ -14,6 +16,52 @@ namespace Geta.Net.Extensions
     /// </summary>
     public static class StringExtensions
     {
+        private const string Ellipsis = "…";
+
+        /// <summary>
+        ///     Returns a number of characters from the start of the string followed by a '...'.
+        /// </summary>
+        /// <param name="source">Source string.</param>
+        /// <param name="headLength">Number of characters to get from the string.</param>
+        /// <returns>string value with first characters from the string followed by a '...'.</returns>
+        public static string GetHead(this string source, int headLength)
+        {
+            if (source.EndsWith(Environment.NewLine))
+                headLength -= Environment.NewLine.Length;
+
+            if (source.Length <= headLength)
+                return source;
+
+            var result = source.Substring(0, headLength - Ellipsis.Length);
+
+            if (!result.EndsWith(Ellipsis))
+                result = result + Ellipsis;
+
+            if (source.EndsWith(Environment.NewLine))
+                result += Environment.NewLine;
+
+            return result;
+        }
+
+        /// <summary>
+        ///     Returns a number of characters from the end of the string with a '...' at the beginning.
+        /// </summary>
+        /// <param name="source">Source string.</param>
+        /// <param name="tailLength">Number of characters to get from the string.</param>
+        /// <returns>string value with last characters from the string with a '...' at the beginning.</returns>
+        public static string GetTail(this string source, int tailLength)
+        {
+            if (source.Length <= tailLength)
+                return source;
+
+            var result = source.Substring(source.Length - tailLength + Ellipsis.Length);
+
+            if (!result.StartsWith(Ellipsis))
+                result = Ellipsis + result;
+
+            return result;
+        }
+
         /// <summary>
         /// Transforms list into a separated string.
         /// </summary>
@@ -21,7 +69,8 @@ namespace Geta.Net.Extensions
         /// <param name="separator">String separator</param>
         /// <param name="skipNullOrWhitespace">If list items that are null or empty strings should be skipped</param>
         /// <returns></returns>
-        public static string JoinStrings(this IEnumerable<string> strings, string separator = ", ", bool skipNullOrWhitespace = true)
+        public static string JoinStrings(this IEnumerable<string> strings, string separator = ", ",
+            bool skipNullOrWhitespace = true)
         {
             var stringsToJoin = strings
                 .Where(x => !skipNullOrWhitespace || !string.IsNullOrWhiteSpace(x));
@@ -60,6 +109,7 @@ namespace Geta.Net.Extensions
                     }
                 }
             }
+
             // remove accents
             var bytes = Encoding.GetEncoding("Cyrillic").GetBytes(charList.ToArray());
             var str = Encoding.ASCII.GetString(bytes);
@@ -90,7 +140,7 @@ namespace Geta.Net.Extensions
         /// <returns>int (Int32) value if parse succeeds otherwise null.</returns>
         public static int? TryParseInt32(this string input)
         {
-            return Int32.TryParse(input, out var outValue) ? (int?)outValue : null;
+            return Int32.TryParse(input, out var outValue) ? (int?) outValue : null;
         }
 
         /// <summary>
@@ -100,7 +150,7 @@ namespace Geta.Net.Extensions
         /// <returns>long (Int64) value if parse succeeds otherwise null.</returns>
         public static long? TryParseInt64(this string input)
         {
-            return long.TryParse(input, out var outValue) ? (long?)outValue : null;
+            return long.TryParse(input, out var outValue) ? (long?) outValue : null;
         }
 
         /// <summary>
@@ -110,7 +160,27 @@ namespace Geta.Net.Extensions
         /// <returns>decimal value if parse succeeds otherwise null.</returns>
         public static decimal? TryParseDecimal(this string input)
         {
-            return decimal.TryParse(input, out var outValue) ? (decimal?)outValue : null;
+            return decimal.TryParse(input, out var outValue) ? (decimal?) outValue : null;
+        }
+
+        /// <summary>
+        ///     Parses string to nullable bool.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>bool value if parse succeeds otherwise null.</returns>
+        public static bool? TryParseBool(this string input)
+        {
+            return bool.TryParse(input, out bool outValue) ? (bool?) outValue : null;
+        }
+
+        /// <summary>
+        ///     Parses string to nullable TimeSpan.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>TimeStamp value if parse succeeds otherwise null.</returns>
+        public static TimeSpan? TryParseTimeSpan(this string input)
+        {
+            return TimeSpan.TryParse(input, out TimeSpan outValue) ? (TimeSpan?) outValue : null;
         }
 
         /// <summary>
@@ -171,6 +241,20 @@ namespace Geta.Net.Extensions
         public static bool IsRelativeUrl(this string url)
         {
             return Uri.TryCreate(url, UriKind.Relative, out var _);
+        }
+
+        /// <summary>
+        /// Changes a string to title case.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>string value with title case.</returns>
+        public static string Capitalize(this string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+
+            var culture = Thread.CurrentThread.CurrentCulture;
+            var textInfo = culture.TextInfo;
+            return textInfo.ToTitleCase(input.ToLower());
         }
     }
 }
