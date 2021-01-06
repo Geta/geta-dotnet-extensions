@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Geta Digital. All rights reserved.
 // Licensed under Apache-2.0. See the LICENSE file in the project root for more information
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,23 @@ namespace Geta.Net.Extensions
             foreach (var obj in items)
             {
                 action(obj);
+            }
+        }
+
+        /// <summary>
+        /// Applies an action on each item of the sequence
+        /// </summary>
+        /// <typeparam name="T">The type of an item.</typeparam>
+        /// <param name="items">The source sequence of items.</param>
+        /// <param name="action">The action to apply on an item passed along with the index of the item.</param>
+        public static void ForEach<T>(this IEnumerable<T> items, Action<int, T> action)
+        {
+            // argument null checking omitted
+            var i = 0;
+            foreach (var item in items)
+            {
+                action(i, item);
+                i++;
             }
         }
 
@@ -90,6 +108,7 @@ namespace Geta.Net.Extensions
             var skip = pageSize * (page - 1);
             return source.Skip(skip).Take(take);
         }
+
         /// <summary>
         /// Transforms item into IEnumerable with one item.
         /// </summary>
@@ -100,6 +119,7 @@ namespace Geta.Net.Extensions
         {
             yield return item;
         }
+
         /// <summary>
         /// Splits IEnumerable into multiple partitions.
         /// </summary>
@@ -132,6 +152,7 @@ namespace Geta.Net.Extensions
                 yield return new ReadOnlyCollection<T>(partition);
             }
         }
+
         /// <summary>
         /// Selects distinct values from list.
         /// </summary>
@@ -143,6 +164,26 @@ namespace Geta.Net.Extensions
         public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
         {
             return items.GroupBy(property).Select(x => x.First());
+        }
+
+        /// <summary>
+        /// Concatenates two or more sequences together.
+        /// </summary>
+        /// <typeparam name="T">The type of an item.</typeparam>
+        /// <param name="items">1st sequence to concatenate other with</param>
+        /// <param name="collections">Rest of the sequences</param>
+        /// <returns>New sequence concatenated together all other sequences.</returns>
+        /// <remarks>Any sequence can also be <c>null</c> and no exception will be thrown.</remarks>
+        public static IEnumerable<T> Concat<T>(this IEnumerable<T> items, params IEnumerable<T>[] collections)
+        {
+            var result = new List<T>();
+
+            if (items != null)
+                result.AddRange(items);
+
+            collections.ForEach(c => result.AddRange(c));
+
+            return result;
         }
     }
 }
