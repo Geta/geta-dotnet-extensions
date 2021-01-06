@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Geta.Net.Extensions
 {
@@ -114,6 +115,26 @@ namespace Geta.Net.Extensions
         }
 
         /// <summary>
+        ///     Parses string to nullable bool.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>bool value if parse succeeds otherwise null.</returns>
+        public static bool? TryParseBool(this string input)
+        {
+            return bool.TryParse(input, out bool outValue) ? (bool?)outValue : null;
+        }
+
+        /// <summary>
+        ///     Parses string to nullable TimeSpan.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>TimeStamp value if parse succeeds otherwise null.</returns>
+        public static TimeSpan? TryParseTimeSpan(this string input)
+        {
+            return TimeSpan.TryParse(input, out TimeSpan outValue) ? (TimeSpan?)outValue : null;
+        }
+
+        /// <summary>
         /// Answers true if this String is either null or empty.
         /// </summary>
         /// <param name="input">The string to check.</param>
@@ -171,6 +192,20 @@ namespace Geta.Net.Extensions
         public static bool IsRelativeUrl(this string url)
         {
             return Uri.TryCreate(url, UriKind.Relative, out var _);
+        }
+
+        /// <summary>
+        /// Changes a string to title case.
+        /// </summary>
+        /// <param name="input">Source string.</param>
+        /// <returns>string value with title case.</returns>
+        public static string Capitalize(this string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+
+            var culture = Thread.CurrentThread.CurrentCulture;
+            var textInfo = culture.TextInfo;
+            return textInfo.ToTitleCase(input.ToLower());
         }
     }
 }

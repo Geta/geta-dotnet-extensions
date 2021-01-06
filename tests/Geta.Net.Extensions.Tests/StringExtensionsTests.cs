@@ -59,5 +59,50 @@ namespace Geta.Net.Extensions.Tests
         {
             Assert.False(url.IsAbsoluteUrl());
         }
+
+        [Fact]
+        public void CapitalizeShouldMakeSingleLetterCapital()
+        {
+            var str = "a";
+
+            var result = str.Capitalize();
+
+            Assert.Equal("A", result);
+        }
+
+        [Fact]
+        public void CapitalizeShouldReturnEmptyStringForEmptyString()
+        {
+            var str = string.Empty;
+
+            var result = str.Capitalize();
+
+            Assert.Equal(string.Empty, result);
+        }
+
+        [Fact]
+        public void CapitalizeShouldReturnNullForNullString()
+        {
+            string str = null;
+
+            var result = str.Capitalize();
+
+            Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData("mytest", "Mytest")]
+        [InlineData("my test", "My Test")]
+        [InlineData("MyTest", "Mytest")]
+        [InlineData("MYTEST", "Mytest")]
+        [InlineData("My test", "My Test")]
+        [InlineData("my-test", "My-Test")]
+        [InlineData("mYTEST", "Mytest")]
+        public void CapitalizeOnlyFirstLetterInAllWords(string word, string expected)
+        {
+            var result = word.Capitalize();
+
+            Assert.Equal(expected, result);
+        }
     }
 }
