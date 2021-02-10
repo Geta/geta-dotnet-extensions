@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET extensions and helpers library</description>
     <tags>Geta Foundation .NET Extensions library</tags>
+    <repository type="git" url="URL" branch="BRANCH_NAME" commit="COMMIT" />
     <dependencies>
       <dependency id="NETStandard.Library" version="2.*" />
       <dependency id="System.Configuration.ConfigurationManager" version="[4.6.0,5)" />
