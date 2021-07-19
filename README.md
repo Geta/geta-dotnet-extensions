@@ -1,7 +1,6 @@
 
 # .NET extensions and helpers library
 
-* Master<br>
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:GetaPackages_GetaNetExtensions_00ci),branch:master/statusIcon)
 [![Platform](https://img.shields.io/badge/Platform-.NET%20Standard%202.0-blue.svg?style=flat)](https://docs.microsoft.com/en-us/dotnet/core/)
 
