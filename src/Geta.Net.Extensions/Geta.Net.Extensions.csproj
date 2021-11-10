@@ -5,8 +5,4 @@
     <RepositoryUrl>URL</RepositoryUrl>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-  </ItemGroup>
-
 </Project>
