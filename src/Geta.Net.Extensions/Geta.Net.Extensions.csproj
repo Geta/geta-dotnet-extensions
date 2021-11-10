@@ -2,7 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RepositoryUrl>URL</RepositoryUrl>
+    <Version>1.0.0</Version>
+    <PackageId>Geta.Net.Extensions</PackageId>
+    <Title>.NET extensions and helpers library</Title>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Geta Digital</Authors>
+    <Company>Geta Digital</Company>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Geta/Net.Extensions</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://cdn.geta.no/opensource/icons/Geta-logo-3.png</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Geta.EPi.Extensions is library with useful extension methods and helpers for Optimizely.</Description>
+    <PackageReleaseNotes>https://github.com/Geta/Net.Extensions/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageTags>Extensions Geta .NET</PackageTags>
+    <RepositoryUrl>https://github.com/Geta/Net.Extensions.git</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="icon.png">
+      <Pack>true</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>icon.png</Link>
+    </None>
+  </ItemGroup>
 
 </Project>
