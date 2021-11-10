@@ -9,14 +9,14 @@
     <Authors>Geta Digital</Authors>
     <Company>Geta Digital</Company>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Geta/Net.Extensions</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Geta/geta-dotnet-extensions</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl>https://cdn.geta.no/opensource/icons/Geta-logo-3.png</PackageIconUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Geta.EPi.Extensions is library with useful extension methods and helpers for Optimizely.</Description>
-    <PackageReleaseNotes>https://github.com/Geta/Net.Extensions/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/Geta/geta-dotnet-extensions/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <PackageTags>Extensions Geta .NET</PackageTags>
-    <RepositoryUrl>https://github.com/Geta/Net.Extensions.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Geta/geta-dotnet-extensions.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
