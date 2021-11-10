@@ -18,10 +18,6 @@ Install-Package Geta.Net.Extensions
 Features included in package:
 ### Helpers
 
-- `ConfigurationHelper` - Read app settings from config files. Key should be in format `{prefix}:{name}`:
-  - `GetConfig<T>(string prefix, string name, T defaultValue)`
-  - `GetConfigRequired(string prefix, string name)` - will throw `ConfigurationErrorsException` if config key will not be found;
-  - `GetConfigRequired<T>(string prefix, string name)`
 - `CultureInfoHelpers`
   - `Exists(string cultureName)` - Checks if there is a culture by the provided name.
 - `GenerateRandomString`
