@@ -16,7 +16,7 @@
     <Description>Geta.EPi.Extensions is library with useful extension methods and helpers for Optimizely.</Description>
     <PackageReleaseNotes>https://github.com/Geta/geta-dotnet-extensions/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <PackageTags>Extensions Geta .NET</PackageTags>
-    <RepositoryUrl>https://github.com/Geta/geta-dotnet-extensions.git</RepositoryUrl>
+    <RepositoryUrl>URL</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
