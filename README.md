@@ -10,7 +10,7 @@ Geta.Net.Extensions package contains common handlers, extension methods and othe
 
 ## How to get started?
 ```
-Install-Package Geta.Net.Extensions
+dotnet add package Geta.Net.Extensions
 ```
 
 ## Features
