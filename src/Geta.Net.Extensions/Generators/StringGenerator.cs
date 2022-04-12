@@ -1,17 +1,28 @@
 ﻿// Copyright (c) Geta Digital. All rights reserved.
 // Licensed under Apache-2.0. See the LICENSE file in the project root for more information
+
 using System;
+using System.Text;
 
 namespace Geta.Net.Extensions.Generators
 {
     public static class StringGenerator
     {
-        private static readonly Random Random = new Random();
+        private static readonly Random Random = new Random(DateTime.Now.Millisecond);
+        private const string AllowedLowercaseChars = "abcdefghijkmnopqrstuvwxyz";
+        private const string AllowedUpperCaseChars = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+        private const string AllowedDigits = "0123456789";
+        private const string AllowedSymbols = "!&%$*";
 
-        public static string GenerateRandomPassword(int uppercaseChars = 2, int lowerCaseChars = 2, int digits = 2, int symbols = 2)
+        public static string GenerateRandomPassword(
+            int uppercaseChars = 2,
+            int lowerCaseChars = 2,
+            int digits = 2,
+            int symbols = 2)
         {
             return GenerateRandomString(uppercaseChars, lowerCaseChars, digits, symbols);
         }
+
         /// <summary>
         /// Generates a random string
         /// </summary>
@@ -22,38 +33,33 @@ namespace Geta.Net.Extensions.Generators
         /// <returns>string</returns>
         public static string GenerateRandomString(int uppercaseChars, int lowerCaseChars, int digits, int symbols)
         {
-            const string allowedLowercaseChars = "abcdefghijkmnopqrstuvwxyz";
-            const string allowerUpperCaseChars = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
-            const string allowedDigits = "0123456789";
-            const string allowedSymbols = "!&%$*";
-
-            var password = string.Empty;
+            var sb = new StringBuilder();
 
             for (var i = 0; i < uppercaseChars; i++)
             {
-                var pos = Random.Next(0, allowerUpperCaseChars.Length);
-                password += allowerUpperCaseChars[pos];
+                var pos = Random.Next(0, AllowedUpperCaseChars.Length);
+                sb.Append(AllowedUpperCaseChars[pos]);
             }
 
             for (var i = 0; i < lowerCaseChars; i++)
             {
-                var pos = Random.Next(0, allowedLowercaseChars.Length);
-                password += allowedLowercaseChars[pos];
+                var pos = Random.Next(0, AllowedLowercaseChars.Length);
+                sb.Append(AllowedLowercaseChars[pos]);
             }
 
             for (var i = 0; i < digits; i++)
             {
-                var pos = Random.Next(0, allowedDigits.Length);
-                password += allowedDigits[pos];
+                var pos = Random.Next(0, AllowedDigits.Length);
+                sb.Append(AllowedDigits[pos]);
             }
 
             for (var i = 0; i < symbols; i++)
             {
-                var pos = Random.Next(0, allowedSymbols.Length);
-                password += allowedSymbols[pos];
+                var pos = Random.Next(0, AllowedSymbols.Length);
+                sb.Append(AllowedSymbols[pos]);
             }
 
-            return password;
+            return sb.ToString();
         }
     }
 }
