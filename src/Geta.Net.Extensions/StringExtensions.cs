@@ -69,7 +69,9 @@ namespace Geta.Net.Extensions
         /// <param name="separator">String separator</param>
         /// <param name="skipNullOrWhitespace">If list items that are null or empty strings should be skipped</param>
         /// <returns></returns>
-        public static string JoinStrings(this IEnumerable<string> strings, string separator = ", ",
+        public static string JoinStrings(
+            this IEnumerable<string> strings,
+            string separator = ", ",
             bool skipNullOrWhitespace = true)
         {
             var stringsToJoin = strings
@@ -140,7 +142,7 @@ namespace Geta.Net.Extensions
         /// <returns>int (Int32) value if parse succeeds otherwise null.</returns>
         public static int? TryParseInt32(this string input)
         {
-            return Int32.TryParse(input, out var outValue) ? (int?) outValue : null;
+            return Int32.TryParse(input, out var outValue) ? (int?)outValue : null;
         }
 
         /// <summary>
@@ -150,7 +152,7 @@ namespace Geta.Net.Extensions
         /// <returns>long (Int64) value if parse succeeds otherwise null.</returns>
         public static long? TryParseInt64(this string input)
         {
-            return long.TryParse(input, out var outValue) ? (long?) outValue : null;
+            return long.TryParse(input, out var outValue) ? (long?)outValue : null;
         }
 
         /// <summary>
@@ -160,7 +162,7 @@ namespace Geta.Net.Extensions
         /// <returns>decimal value if parse succeeds otherwise null.</returns>
         public static decimal? TryParseDecimal(this string input)
         {
-            return decimal.TryParse(input, out var outValue) ? (decimal?) outValue : null;
+            return decimal.TryParse(input, out var outValue) ? (decimal?)outValue : null;
         }
 
         /// <summary>
@@ -170,7 +172,7 @@ namespace Geta.Net.Extensions
         /// <returns>bool value if parse succeeds otherwise null.</returns>
         public static bool? TryParseBool(this string input)
         {
-            return bool.TryParse(input, out bool outValue) ? (bool?) outValue : null;
+            return bool.TryParse(input, out bool outValue) ? (bool?)outValue : null;
         }
 
         /// <summary>
@@ -180,7 +182,7 @@ namespace Geta.Net.Extensions
         /// <returns>TimeStamp value if parse succeeds otherwise null.</returns>
         public static TimeSpan? TryParseTimeSpan(this string input)
         {
-            return TimeSpan.TryParse(input, out TimeSpan outValue) ? (TimeSpan?) outValue : null;
+            return TimeSpan.TryParse(input, out TimeSpan outValue) ? (TimeSpan?)outValue : null;
         }
 
         /// <summary>

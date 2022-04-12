@@ -51,9 +51,10 @@ namespace Geta.Net.Extensions.Tests
             var value = "Hello";
 
             var list = new List<string>()
-                .If(false, l => 
-                    l.If(() => !string.IsNullOrEmpty(value),
-                        l1 => l1.FluentAdd(value)));
+                .If(false,
+                    l =>
+                        l.If(() => !string.IsNullOrEmpty(value),
+                             l1 => l1.FluentAdd(value)));
 
             var expected = string.Empty;
             var actual = string.Concat(list);
@@ -66,9 +67,10 @@ namespace Geta.Net.Extensions.Tests
             var value = "Hello";
 
             var list = new List<string>()
-                .If(true, l =>
-                    l.If(() => !string.IsNullOrEmpty(value),
-                        l1 => l1.FluentAdd(value)));
+                .If(true,
+                    l =>
+                        l.If(() => !string.IsNullOrEmpty(value),
+                             l1 => l1.FluentAdd(value)));
 
             var expected = value;
             var actual = string.Concat(list);

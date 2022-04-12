@@ -10,12 +10,7 @@ namespace Geta.Net.Extensions.Tests
         [Fact]
         public void DistinctBy_removes_duplicate_entries()
         {
-            var list = new List<string>
-            {
-                "1",
-                "2",
-                "1"
-            };
+            var list = new List<string> { "1", "2", "1" };
             var distinctList = list.DistinctBy(x => x);
 
             Assert.Equal(1, distinctList.Count(x => x == "1"));

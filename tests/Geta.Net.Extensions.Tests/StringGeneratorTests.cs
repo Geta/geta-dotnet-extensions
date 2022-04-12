@@ -13,12 +13,19 @@ namespace Geta.Net.Extensions.Tests
         [InlineData(0, 0, 10, 0)]
         [InlineData(0, 0, 0, 10)]
         [InlineData(5, 5, 5, 5)]
-        public void String_generation_includes_all_required_chars(int expectedUppercaseCharCount, int expectedLowerCaseCharCount, int expectedDigitCount, int expectedSymbolCount)
+        public void String_generation_includes_all_required_chars(
+            int expectedUppercaseCharCount,
+            int expectedLowerCaseCharCount,
+            int expectedDigitCount,
+            int expectedSymbolCount)
         {
-            var expectedTotalCount = expectedUppercaseCharCount + expectedLowerCaseCharCount + expectedDigitCount + expectedSymbolCount;
+            var expectedTotalCount = expectedUppercaseCharCount + expectedLowerCaseCharCount + expectedDigitCount +
+                                     expectedSymbolCount;
 
-            var value = StringGenerator.GenerateRandomString(expectedUppercaseCharCount, expectedLowerCaseCharCount,
-                expectedDigitCount, expectedSymbolCount);
+            var value = StringGenerator.GenerateRandomString(expectedUppercaseCharCount,
+                                                             expectedLowerCaseCharCount,
+                                                             expectedDigitCount,
+                                                             expectedSymbolCount);
 
             const string allLowercaseChars = "abcdefghijkmnopqrstuvwxyz";
             const string allUpperCaseChars = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
@@ -30,7 +37,7 @@ namespace Geta.Net.Extensions.Tests
             var digitCount = value.Count(x => allDigits.Contains(x));
             var symbolCount = value.Count(x => allSymbols.Contains(x));
             var totalCount = value.Length;
-            
+
             Assert.Equal(expectedLowerCaseCharCount, lowercaseCharCount);
             Assert.Equal(expectedUppercaseCharCount, uppercaseCharCount);
             Assert.Equal(expectedDigitCount, digitCount);

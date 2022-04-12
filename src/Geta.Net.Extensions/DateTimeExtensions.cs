@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Geta Digital. All rights reserved.
 // Licensed under Apache-2.0. See the LICENSE file in the project root for more information
+
 using System;
 
 namespace Geta.Net.Extensions
@@ -12,14 +13,14 @@ namespace Geta.Net.Extensions
         /// Returns a Unix Epoch time given a <see cref="DateTime"/>.
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/> to convert.</param>
-        public static long ToEpochTime(this DateTime dateTime) => (long) (dateTime - Epoch).TotalSeconds;
+        public static long ToEpochTime(this DateTime dateTime) => (long)(dateTime - Epoch).TotalSeconds;
 
         /// <summary>
         /// Returns a Unix Epoch time if given a value, and null otherwise.
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/> to convert.</param>
         /// <returns></returns>
-        public static long? ToEpochTime(this DateTime? dateTime) => dateTime.HasValue ? (long?) ToEpochTime(dateTime) : null;
+        public static long? ToEpochTime(this DateTime? dateTime) => dateTime.HasValue ? (long?)ToEpochTime(dateTime) : null;
 
         /// <summary>
         /// Returns end of the day datetime "dd.mm.yyyy 23:59:59"
@@ -50,6 +51,7 @@ namespace Geta.Net.Extensions
         {
             return date.Date == DateTime.UtcNow.Date;
         }
+
         /// <summary>
         /// Checks if date is tomorrow (Should be in UTC).
         /// </summary>
@@ -59,6 +61,7 @@ namespace Geta.Net.Extensions
         {
             return DateTime.UtcNow.Date == date.Date.AddDays(-1);
         }
+
         /// <summary>
         /// Checks if date is yesterday (Should be in UTC).
         /// </summary>
@@ -68,6 +71,7 @@ namespace Geta.Net.Extensions
         {
             return DateTime.UtcNow.Date == date.Date.AddDays(+1);
         }
+
         /// <summary>
         /// Converts datetime to timestamp.
         /// </summary>
@@ -77,6 +81,5 @@ namespace Geta.Net.Extensions
         {
             return (int)date.ToUniversalTime().Subtract(Epoch).TotalSeconds;
         }
-
     }
 }
