@@ -20,7 +20,7 @@ namespace Geta.Net.Extensions
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/> to convert.</param>
         /// <returns></returns>
-        public static long? ToEpochTime(this DateTime? dateTime) => dateTime.HasValue ? (long?)ToEpochTime(dateTime) : null;
+        public static long? ToEpochTime(this DateTime? dateTime) => dateTime.HasValue ? (long?)ToEpochTime(dateTime.Value) : null;
 
         /// <summary>
         /// Returns end of the day datetime "dd.mm.yyyy 23:59:59"
