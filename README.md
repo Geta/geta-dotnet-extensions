@@ -129,3 +129,31 @@ var list = new List<string>()
         l.If(() => !string.IsNullOrEmpty(value),
             l1 => l1.FluentAdd(value)));
 ```
+
+- `AsyncExtensions` - provides various extension methods to help working with async code
+    - `GetAwaiter(this CancellationToken ct)` - allows to `await` on `CancellationToken`
+
+Example (subscribing to GraphQL subscription and handling the message):
+
+```csharp
+public async Task SubscribeAndHandleMessagesAsync(CancellationToken cancellationToken)
+{
+    var query = "subscription { ... }";
+    var graphQlClient = new GraphQLHttpClient(url);
+    var observable = graphQlClient.CreateSubscriptionStream<ResultDto>(query);
+
+    observable
+        .SelectMany(r => Observable.FromAsync(() => HandleAsync(r)))
+        .Subscribe();
+
+    // as `Subscribe()` method exits immediately after invoke
+    // we have to sit here and wait until cancellation token is cancelled (from outer scope)
+    // having extension method `GetAwaiter` on `CancellationToken` allows us to do so
+    await cancellationToken;
+}
+
+private async Task<Unit> HandleAsync(GraphQLResponse<ResultDto> result)
+{
+    // handle the message
+}
+```
