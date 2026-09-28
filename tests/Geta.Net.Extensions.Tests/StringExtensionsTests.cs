@@ -9,6 +9,8 @@ namespace Geta.Net.Extensions.Tests
         [InlineData("http://mysite.com/mypage")]
         [InlineData("http://mysite.com")]
         [InlineData("http://mysite.com/")]
+        [InlineData("https://mysite.com/mypage?query=1")]
+        [InlineData("file:///tmp/myfile.txt")]
         public void IsAbsoluteUrl_with_absolute_url_is_true(string url)
         {
             Assert.True(url.IsAbsoluteUrl());
@@ -19,6 +21,9 @@ namespace Geta.Net.Extensions.Tests
         [InlineData("/mypage")]
         [InlineData("mypage/anotherpage")]
         [InlineData("/mypage/anotherpage")]
+        [InlineData("/")]
+        [InlineData("/mypage?query=1")]
+        [InlineData("/globalassets/image.jpg,,123?epieditmode=true")]
         public void IsAbsoluteUrl_with_relative_url_is_false(string url)
         {
             Assert.False(url.IsAbsoluteUrl());
