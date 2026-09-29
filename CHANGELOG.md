@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.2]
+
+### Fixed
+
+- `IsAbsoluteUrl` returned `true` for server-relative paths such as `/page?id=1` on Linux and macOS, where `Uri.TryCreate` accepts them as absolute file URIs. They are now relative on every operating system, as they already were on Windows. This also fixes Geta.Optimizely.Extensions' `RemoveHost` (and so `GetFriendlyUrl`), which escaped the `?` in such URLs to `%3F` on Linux.
+
 ## [3.0.0]
 
 - Removed `ConfigurationHelper`

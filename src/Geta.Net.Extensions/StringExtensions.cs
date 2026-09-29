@@ -228,11 +228,24 @@ namespace Geta.Net.Extensions
         /// <summary>
         /// Checks if a string is absolute URL.
         /// </summary>
+        /// <remarks>
+        /// A server-relative path such as <c>/page?id=1</c> is never absolute, on any operating system.
+        /// </remarks>
         /// <param name="url">The string to check.</param>
         /// <returns>Returns true, if it is absolute URL and false when not.</returns>
         public static bool IsAbsoluteUrl(this string url)
         {
-            return Uri.TryCreate(url, UriKind.Absolute, out var _);
+            return Uri.TryCreate(url, UriKind.Absolute, out var uri) && !IsServerRelativePath(url, uri);
+        }
+
+        // On Linux and macOS, Uri.TryCreate(UriKind.Absolute) accepts "/page" as an implicit file URI (file:///page),
+        // where a '?' is part of the path and gets escaped. Windows rejects it, so check it explicitly. "//host/path"
+        // (UNC / network-path reference) keeps its current behaviour.
+        private static bool IsServerRelativePath(string url, Uri uri)
+        {
+            return uri.IsFile
+                   && url.StartsWith("/", StringComparison.Ordinal)
+                   && !url.StartsWith("//", StringComparison.Ordinal);
         }
 
         /// <summary>
