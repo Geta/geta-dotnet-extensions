@@ -9,7 +9,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
+      # windows-latest no longer ships the .NET 6 runtime that the net6.0 test project runs on
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 6.0.x
       - name: Verify commit exists in origin/master
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
