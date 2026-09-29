@@ -1,7 +1,6 @@
 # .NET extensions and helpers library
 
 ![Build](http://teamcity.getatools.ai/app/rest/builds/buildType:(id:GetaPackages_GetaNetExtensions_00ci),branch:master/statusIcon)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Geta_geta-dotnet-extensions&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Geta_geta-dotnet-extensions)
 [![Platform](https://img.shields.io/badge/Platform-.NET%20Standard%202.0-blue.svg?style=flat)](https://docs.microsoft.com/en-us/dotnet/core/)
 
 ## Description
